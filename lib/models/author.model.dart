@@ -10,7 +10,7 @@ class Author {
 
   Author.fromJson(Map<String, dynamic> json) {
     bio = json['bio'];
-    sId = json['sId'];
+    sId = json['_id'];
     name = json['name'];
     title = json['title'];
     badge = json['badge'];
@@ -20,7 +20,7 @@ class Author {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['bio'] = this.bio;
-    data['sId'] = this.sId;
+    data['_id'] = this.sId;
     data['name'] = this.name;
     data['title'] = this.title;
     data['badge'] = this.badge;

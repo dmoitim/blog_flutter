@@ -1,13 +1,18 @@
+import 'author.model.dart';
+import 'meta.model.dart';
+
 class Post {
+  Meta meta;
   String sId;
   String title;
   String summary;
-  String author;
+  Author author;
   String category;
   String createDate;
 
   Post(
-      {this.sId,
+      {this.meta,
+      this.sId,
       this.title,
       this.summary,
       this.author,
@@ -15,20 +20,27 @@ class Post {
       this.createDate});
 
   Post.fromJson(Map<String, dynamic> json) {
-    sId = json['sId'];
+    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    sId = json['_id'];
     title = json['title'];
     summary = json['summary'];
-    author = json['author'];
+    author =
+        json['author'] != null ? new Author.fromJson(json['author']) : null;
     category = json['category'];
     createDate = json['createDate'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sId'] = this.sId;
+    if (this.meta != null) {
+      data['meta'] = this.meta.toJson();
+    }
+    data['_id'] = this.sId;
     data['title'] = this.title;
     data['summary'] = this.summary;
-    data['author'] = this.author;
+    if (this.author != null) {
+      data['author'] = this.author.toJson();
+    }
     data['category'] = this.category;
     data['createDate'] = this.createDate;
     return data;
